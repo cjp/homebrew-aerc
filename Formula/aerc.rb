@@ -4,14 +4,13 @@ class Aerc < Formula
 
   desc "The world's best email client"
   homepage "https://aerc-mail.org/"
-  url "https://git.sr.ht/~sircmpwn/aerc/archive/0.1.4.tar.gz"
-  sha256 "a5c0e11ced480cdbf0bc69172252f79bd40c93e27f68979d3bd71bbc247b986e"
+  url "https://git.sr.ht/~sircmpwn/aerc/archive/0.2.1.tar.gz"
+  sha256 "560cee4e284ed35623d28a5e793db79c5e4700296b0aa6ac2c8e92b20ab5c1cf"
 
   depends_on "go" => :build
   depends_on "scdoc" => :build
 
   depends_on "dante"
-  depends_on "python"
   depends_on "w3m"
 
   resource "colorama" do
@@ -20,12 +19,6 @@ class Aerc < Formula
   end
 
   def install
-    # TODO: Use env_script_all_files instead of a virtualenv.
-    venv = virtualenv_create(libexec, "python3")
-    venv.pip_install resources
-    inreplace "contrib/plaintext.py", "/usr/bin/env python3", "#{libexec}/bin/python3"
-    inreplace "contrib/hldiff.py", "/usr/bin/env python3", "#{libexec}/bin/python3"
-
     system "make", "PREFIX=#{prefix}"
     system "make", "install", "PREFIX=#{prefix}"
   end
