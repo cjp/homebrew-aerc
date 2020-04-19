@@ -1,6 +1,6 @@
 # Homebrew Formulae
 
 ```
-brew tap cjp/formulae
+brew tap cjp/aerc
 brew install aerc
 ```
